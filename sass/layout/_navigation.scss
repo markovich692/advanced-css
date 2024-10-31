@@ -13,21 +13,8 @@
     right: 6rem;
     z-index: 2000;
     box-shadow: 0 1rem 3rem rgba($color-black, 0.1);
-
-    &::after {
-      //We will have the exact same bottom as the white button but will only appear once the box is checked
-      //content: "";
-      //display: block;
-      //background-color: $color-white;
-      //height: 7rem;
-      //width: 7rem;
-      //border-radius: 50%;
-      //position: fixed;
-      //top: 6rem;
-      //right: 6rem;
-      //z-index: 2000;
-      //opacity: 0;
-    }
+    text-align: center;
+    cursor: pointer;
   }
 
   &__background {
@@ -104,7 +91,7 @@
     }
   }
 
-  //The box is checked once the navigation__button is clicked
+  //FUNCTIONALITY
 
   &__checkbox:checked ~ &__background {
     transform: scale(100);
@@ -113,5 +100,62 @@
   &__checkbox:checked ~ &__nav {
     opacity: 1;
     width: 100%;
+  }
+
+  //ICON
+
+  &__icon {
+    position: relative;
+    //transform: translateX(0.1rem) translateY(3.4rem);
+    margin-top: 3.45rem;
+
+    &,
+    &::after,
+    &::before {
+      width: 3rem;
+      height: 2px;
+      display: inline-block;
+      background-color: $color-grey-dark-3;
+    }
+
+    &::after,
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      transition: all 0.1s;
+    }
+
+    &::before {
+      top: -0.8rem;
+    }
+
+    &::after {
+      top: 0.8rem;
+    }
+  }
+
+  &__button:hover &__icon:before {
+    top: -1rem;
+  }
+
+  &__button:hover &__icon:after {
+    top: 1rem;
+  }
+
+  &__checkbox:checked ~ &__button &__icon {
+    background-color: transparent;
+
+    transition: all 0.2s;
+  }
+
+  &__checkbox:checked ~ &__button &__icon::before {
+    transform: rotate(45deg);
+    top: 0rem;
+  }
+
+  &__checkbox:checked ~ &__button &__icon::after {
+    transform: rotate(-45deg);
+    top: 0;
   }
 }
